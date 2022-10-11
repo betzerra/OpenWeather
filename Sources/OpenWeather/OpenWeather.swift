@@ -5,16 +5,22 @@ public class OpenWeather {
     let token: String
     let pluma: Pluma
 
+    static var decoder: JSONDecoder = {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
+        return decoder
+    }()
+
     public init(token: String, baseURL: URL?) {
         self.token = token
 
         let url = baseURL ?? OpenWeather.defaultBaseURL
-        pluma = Pluma(baseURL: url, decoder: JSONDecoder())
+        pluma = Pluma(baseURL: url, decoder: OpenWeather.decoder)
     }
 
     init(token: String, client: APIClient) {
         self.token = token
-        pluma = Pluma(client: client, decoder: JSONDecoder())
+        pluma = Pluma(client: client, decoder: OpenWeather.decoder)
     }
 
     public func forecast(

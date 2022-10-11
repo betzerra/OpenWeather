@@ -3,6 +3,12 @@ import XCTest
 @testable import Pluma
 
 final class OpenWeatherTests: XCTestCase {
+    private let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/YYYY h:mm a"
+        return formatter
+    }()
+
     func testParsing() throws {
         let client = MockClient(bundle: Bundle.module)
         let service = OpenWeather(token: "abc123", client: client)
@@ -18,6 +24,9 @@ final class OpenWeatherTests: XCTestCase {
             XCTAssertEqual(forecast.city.id, 3427387)
             XCTAssertEqual(forecast.city.name, "Villa Ortúzar")
             XCTAssertEqual(forecast.list.count, 40)
+
+            let firstItemDate = formatter.string(from: forecast.list.first!.date)
+            XCTAssertEqual(firstItemDate, "10/10/2022 6:00 PM")
             expectation.fulfill()
         }
 
@@ -54,6 +63,5 @@ final class OpenWeatherTests: XCTestCase {
         }
 
         wait(for: [expectation], timeout: 10)
-
     }
 }
