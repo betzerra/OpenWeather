@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "pluma",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:betzerra/Pluma.git",
+      "state" : {
+        "revision" : "9193be39fecc572e7e28101a277612b1e8e38c36",
+        "version" : "0.1.0"
+      }
+    }
+  ],
+  "version" : 2
+}
