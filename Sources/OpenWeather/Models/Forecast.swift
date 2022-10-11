@@ -11,13 +11,13 @@ public struct Forecast: Decodable {
     public let city: City
     public let list: [WeatherEntry]
 
-    var minimum: WeatherEntry? {
+    public var minimum: WeatherEntry? {
         list.min { lhs, rhs in
             lhs.minimum < rhs.minimum
         }
     }
 
-    var maximum: WeatherEntry? {
+    public var maximum: WeatherEntry? {
         list.max { lhs, rhs in
             lhs.maximum < rhs.maximum
         }
