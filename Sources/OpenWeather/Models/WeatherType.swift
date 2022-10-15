@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum WeatherType: Decodable {
+public enum WeatherType: Decodable, Equatable {
     case tornado
     case freezingRain
     case thunderstorm

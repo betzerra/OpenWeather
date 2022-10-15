@@ -34,7 +34,12 @@ public struct Forecast: Decodable {
         cluster.append(last)
 
         list.forEach { item in
-            if abs(item.temperature - last.temperature) > threshold {
+            // Add a new weather entry if:
+            // 1. The temperature is significant different or...
+            // 2. The weather type is different (clear, rain, snow, clouds, etc)
+            if abs(item.temperature - last.temperature) > threshold ||
+                item.type != last.type {
+
                 last = item
                 cluster.append(item)
             }
